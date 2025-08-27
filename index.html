@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>- DIAGNOSTIC-AUTONOMIE.com</title>
+  <link rel="stylesheet" href="./src/output.css">
+  <link rel="icon" href="/images/logo.png">
+</head>
+
+<body class="bg-gray-100 text-gray-800 relative font-inter">
+
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md p-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 md:py-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+        <img src="/images/logo.png" alt="Logo Diagnostic Autonomie" class="h-8 sm:h-9 md:h-10 w-auto flex-shrink-0">
+        <a href="https://diagnostic-autonomie.com/accueil"
+          class="text-primary font-bold text-sm xs:text-base sm:text-lg md:text-xl leading-tight break-words truncate">
+          DIAGNOSTIC-AUTONOMIE.com
+        </a>
+      </div>
+
+      <!-- Menu desktop -->
+      <nav
+        class="hidden md:flex items-center flex-wrap gap-x-4 gap-y-2 font-bold text-gray-700 text-sm lg:text-[14.5px]">
+        <a href="#"
+          class="hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded px-2 py-1">Actualités</a>
+        <a href="#"
+          class="hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded px-2 py-1">Aides
+          financières</a>
+        <a href="#"
+          class="hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded px-2 py-1">MaPrimeAdapt</a>
+        <a href="#"
+          class="hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded px-2 py-1 text-center">Je
+          réalise mon Autodiagnostic</a>
+      </nav>
+
+      <!-- Bouton compte (desktop) -->
+      <a href="#" class="hidden lg:block bg-primary px-4 py-2 rounded text-white text-sm font-medium 
+       transition duration-300 ease-in-out hover:bg-primary hover:shadow-[0_0_20px_4px_rgba(34,197,94,0.6)] 
+       focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+        Mon compte
+      </a>
+
+      <!-- Bouton menu mobile -->
+      <button id="mobile-menu-button"
+        class="md:hidden flex flex-col justify-center items-center w-10 h-10 p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black">
+        <span class="sr-only">Ouvrir le menu principal</span>
+        <div class="w-6 h-0.5 bg-gray-700 mb-1.5 transition-transform duration-300" id="bar1"></div>
+        <div class="w-6 h-0.5 bg-gray-700 mb-1.5 transition-opacity duration-300" id="bar2"></div>
+        <div class="w-6 h-0.5 bg-gray-700 transition-transform duration-300" id="bar3"></div>
+      </button>
+    </div>
+
+    <!-- Menu mobile/tablette -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 shadow-lg items-center">
+      <nav class="px-4 py-3 flex flex-col space-y-3">
+        <a href="#"
+          class="text-gray-700 font-medium py-2 px-2 rounded hover:bg-gray-100 hover:text-primary transition-colors duration-200">Actualités</a>
+        <a href="#"
+          class="text-gray-700 font-medium py-2 px-2 rounded hover:bg-gray-100 hover:text-primary transition-colors duration-200">Aides
+          financières</a>
+        <a href="#"
+          class="text-gray-700 font-medium py-2 px-2 rounded hover:bg-gray-100 hover:text-primary transition-colors duration-200">MaPrimeAdapt</a>
+        <a href="#"
+          class="text-gray-700 font-medium py-2 px-2 rounded hover:bg-gray-100 hover:text-primary transition-colors duration-200">Je
+          réalise mon Autodiagnostic</a>
+        <a href="#"
+          class="bg-primary text-white font-medium py-2 px-4 rounded text-center mt-2 transition duration-300 ease-in-out hover:bg-primary hover:shadow-[0_0_15px_3px_rgba(34,197,94,0.4)]">Mon
+          compte</a>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    // Gestion du menu mobile
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('hidden');
+
+      // Animation du bouton burger
+      if (!isExpanded) {
+        bar1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+      } else {
+        bar1.style.transform = 'none';
+        bar2.style.opacity = '1';
+        bar3.style.transform = 'none';
+      }
+    });
+  </script>
+
+
+
+  <main
+    class="grid grid-cols-1 md:grid-cols-2 items-center py-12 z-10 px-6 sm:px-12 md:px-24 min-h-[85vh] w-full mt-[65px] bg-[url('/images/desktop.png')] bg-cover bg-center">
+
+    <!-- Colonne Gauche -->
+    <div class="flex flex-col gap-y-5 max-w-full md:max-w-[500px]">
+      <h1 class="text-xl sm:text-2xl md:text-[40px] md:leading-[3rem] font-bold text-gray-700">
+        Votre logement est-il réellement adapté à votre perte d'autonomie ?
+      </h1>
+      <p class="text-base sm:text-[17.5px]"> Effectuez en ligne votre diagnostic autonomie, recevez un bilan détaillé,
+        nos recommandations, et une liste détaillée des aides permettant de financer votre projet d'adaptation.</p>
+
+      <button href="#"
+        class="bg-primary text-white px-4 py-3 rounded hover:bg-secondary w-fit text-sm sm:text-base xl:px-4 2xl:px-6 lg:px-2 transition">
+        Réalisez votre autonomie d'autodiagnostic ➜
+      </button>
+    </div>
+
+    <!-- Colonne droite -->
+    <div class="max-w-full md:max-w-[600px] mt-10 md:mt-0">
+      <div class="bg-blueAccent w-full flex flex-col items-center p-6 mb-4 shadow-md">
+        <h2 class="text-xl sm:text-2xl leading-tight text-white mb-4 font-medium">
+          Votre <span class="text-[#F0F35F]">Diagnostic Autonomie</span> pour
+        </h2>
+        <p class="mb-4">
+          <span class="text-[32px] sm:text-[40px] font-bold relative inline-block text-white">
+            249€
+            <span class="absolute left-0 top-1/2 w-full h-[3px] bg-yellow-300 rotate-[-20deg]"></span>
+          </span>
+        </p>
+        <div
+          class="mb-5 bg-[#F0F35F] text-[#2250A0] text-[22px] sm:text-[28px] leading-none h-[45px] shadow-md w-full flex justify-center items-center space-x-2">
+          <span class="font-extrabold">99€</span>
+          <span>seulement</span>
+        </div>
+
+        <p class="text-[12px] sm:text-[14px] text-white/90">
+          <span class="font-bold text-[#F0F35F]">> Offre limitée</span>
+        </p>
+        <p>
+          <span class="font-bold text-[#F0F35F]">Avec paiement uniquement après réalisation</span>
+        </p>
+      </div>
+
+      <div class="shadow-md p-2 text-center bg-white flex flex-col items-center sm:justify-center">
+        <p class="text-green-500 text-[14px] sm:text-[20px] md:text-[30px] font-bold">+ de 20.000 €</p>
+        <p class="text-[14px] sm:text-[18px] md:text-[22px]">d’aides et subventions à votre portée</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Section 1 -->
+  <div class=" w-full bg-gray-400">
+
+    <div class="grid grid-cols-1 md:grid-cols-3">
+
+      <!-- Colonne 1 -->
+      <div class="bg-[#2250A0] p-6 flex items-start left-2">
+        <div class="relative w-16 h-16 flex items-center justify-center">
+          <div class="absolute -top-4 left-2 w-12 h-12 bg-[#2AD07F] rounded-full -translate-x-2 translate-y-25"></div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 280 60 60"
+            class="w-14 h-14 relative text-white fill-current translate-x-3 -translate-y-0">
+            <path
+              d="M61.58,332.237H34.532a1.019,1.019,0,0,1,0-2.038h12.5v-9.024c-8.257-.473-14.813-6.632-14.813-14.136v-7.326c-4.4-2.3-7.624-6.158-9.6-11.481a1.019,1.019,0,0,1,.955-1.373h8.641V284.19a1.019,1.019,0,0,1,1.019-1.018H62.869a1.019,1.019,0,0,1,1.019,1.018v2.669h8.639a1.019,1.019,0,0,1,.955,1.373c-1.972,5.323-5.2,9.185-9.594,11.481v7.326c0,7.505-6.556,13.666-14.814,14.136V330.2H61.58a1.019,1.019,0,0,1,0,2.038ZM34.262,285.209v21.83c0,6.687,6.189,12.128,13.8,12.128s13.794-5.44,13.794-12.128v-21.83Zm-9.17,3.688a18.116,18.116,0,0,0,7.132,8.478V288.9Zm38.8,0v8.476a18.11,18.11,0,0,0,7.13-8.476ZM54,309.392a1.021,1.021,0,0,1-.526-.147L47.929,305.9l-5.271,3.333a1.018,1.018,0,0,1-1.537-1.091l1.469-6.3-4.8-3.984a1.02,1.02,0,0,1,.565-1.8L44.8,295.5l2.306-5.8a1.017,1.017,0,0,1,.936-.643.993.993,0,0,1,.95.623l2.516,5.964,6.226.4a1.019,1.019,0,0,1,.6,1.788l-4.894,4.237,1.54,6.043A1.02,1.02,0,0,1,54,309.392Zm-6.08-5.708a1.016,1.016,0,0,1,.526.146l3.953,2.386-1.081-4.246a1.017,1.017,0,0,1,.318-1.022l3.492-3.022-4.373-.282a1.019,1.019,0,0,1-.873-.621l-1.8-4.253-1.619,4.072a1.019,1.019,0,0,1-.859.638l-4.6.392,3.37,2.8a1.021,1.021,0,0,1,.343,1.015l-1.049,4.5,3.7-2.342a1.018,1.018,0,0,1,.544-.161Zm-2.4-7.218Z" />
+          </svg>
+        </div>
+
+        <div class="flex flex-col relative pl-5">
+          <div class="absolute left-2 top-8 w-[6px] h-8 bg-[#2AD07F]"></div>
+          <p class="text-white font-bold text-lg leading-tight left-10">N°1 du Diagnostic Autonomie</p>
+          <p class="text-white text-xs font-normal mt-2 leading-4">Le service en ligne le + complet du marché</p>
+        </div>
+      </div>
+
+
+      <!-- Colonne 2 -->
+      <div class="bg-[#2250A0] p-6 flex items-start gap-3">
+        <div class="relative w-14 h-14 flex items-center justify-center shrink-0">
+          <div class="absolute -top-4 left-2 w-12 h-12 bg-[#2AD07F] rounded-full -translate-x-2 translate-y-25">
+            <svg xmlns="http://www.w3.org/2000/svg" width="51.108" height="49.066" viewBox="0 0 51.108 49.066"
+              class="w-14 h-14 relative text-white fill-current translate-x-3 translate-y-5">
+              <g id="Groupe33" transform="translate(-481.526 -658.999)">
+                <g id="Groupe_8346" data-name="Groupe 8346" transform="translate(192.838 632.306)">
+                  <g id="Groupe_8343" data-name="Groupe 8343" transform="translate(302.326 40.488)">
+                    <path id="Tracé_752" data-name="Tracé 752"
+                      d="M323.422,71.853a11.583,11.583,0,0,1-4.964-1.137l-17.178-8.1a4.241,4.241,0,0,1-2.026-5.636,1.012,1.012,0,0,1,.381-.425c1.73-1.07,5.3-1.581,7.3-.636l.187.088L299.1,43.044a4.234,4.234,0,1,1,7.2-4.457l3.594,5.806a4.229,4.229,0,0,1,5.162-1.042,4.221,4.221,0,0,1,5.692-1.851,4.228,4.228,0,0,1,1.541-1.682,4.337,4.337,0,0,1,3.37-.5,3.935,3.935,0,0,1,2.486,1.918L334.419,52.7c3.058,5.584,1.073,11.65-2.253,15.182A11.987,11.987,0,0,1,323.422,71.853ZM300.964,58.114a2.227,2.227,0,0,0,1.173,2.684l17.178,8.1A9.687,9.687,0,0,0,330.7,66.5c2.828-3,4.53-8.139,1.954-12.84L326.381,42.2a1.951,1.951,0,0,0-1.236-.942,2.313,2.313,0,0,0-1.8.266,2.232,2.232,0,0,0-1.046,1.737,1,1,0,0,1-1.77.575,2.223,2.223,0,0,0-3.921,1.278,1,1,0,0,1-1.772.573,2.235,2.235,0,0,0-2.874-.462,2.212,2.212,0,0,0-1,1.427,1,1,0,0,1-1.836.317l-4.535-7.327a2.233,2.233,0,0,0-3.064-.721h0a2.234,2.234,0,0,0-.72,3.064l9.807,15.846a1,1,0,0,1-1.282,1.437l-3.253-1.533C304.866,57.164,302.283,57.469,300.964,58.114ZM301,38.069Z"
+                      transform="translate(-298.465 -36.582)" fill="#fff"></path>
+                  </g>
+                  <g id="Groupe_8344" data-name="Groupe 8344" transform="translate(295.742 33.779)">
+                    <path id="Tracé_753" data-name="Tracé 753"
+                      d="M301,52a1,1,0,0,1-.335-.057,10.381,10.381,0,1,1,13.717-11.371,1,1,0,0,1-1.987.3,8.371,8.371,0,1,0-11.063,9.174A1,1,0,0,1,301,52Z"
+                      transform="translate(-293.745 -31.773)" fill="#fff"></path>
+                  </g>
+                  <g id="Groupe_8345" data-name="Groupe 8345" transform="translate(288.69 26.694)">
+                    <path id="Tracé_754" data-name="Tracé 754"
+                      d="M299.218,60a1,1,0,0,1-.421-.093,17.41,17.41,0,1,1,24.135-20.252,1,1,0,1,1-1.943.513,15.4,15.4,0,1,0-21.35,17.915A1,1,0,0,1,299.218,60Z"
+                      transform="translate(-288.69 -26.694)" fill="#fff"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+
+        </div>
+
+        <div class="flex flex-col relative pl-3 left-2">
+          <div class="absolute left-0 top-8 w-[6px] h-8 bg-[#2AD07F]"></div>
+          <p class="text-white font-bold text-lg leading-tight">Une tarification adaptée</p>
+          <p class="text-white text-xs font-normal mt-2 leading-4 ml-0">Un prix fixe étudié pour être à la portée des +
+            <br>modestes
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Colonne 3 -->
+      <div class="bg-[#2250A0] p-6 flex items-start space-x-4">
+        <!-- Cercle vert -->
+        <div class="w-12 h-12 bg-[#2AD07F] rounded-full flex items-center justify-center translate-x-0s -translate-y-4">
+          <!-- Icône -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="54.568" height="49.633" viewBox="0 0 54.568 49.633"
+            class="translate-x-4 translate-y-6">
+            <g id="Groupe34" transform="translate(-908.995 -658.996)">
+              <g id="Groupe_8348" data-name="Groupe 8348" transform="translate(753.099 304.186)">
+                <path id="Tracé_756" data-name="Tracé 756"
+                  d="M190.546,399.742a4.064,4.064,0,0,1-2.937-1.236l-3.331-3.36a1.088,1.088,0,0,1,1.546-1.53l3.33,3.357a2.261,2.261,0,0,0,3.165-.147c.426-.414,1.263-1.536-.159-3.028a1.1,1.1,0,0,1-.266-.477l-5.6-5.75a1.089,1.089,0,0,1,1.561-1.518l6.667,6.85a2.3,2.3,0,0,0,3.219-.218,1.98,1.98,0,0,0-.086-3.067l-.009-.011-6.066-6.253c-.021-.021-.039-.042-.059-.065l-.393-.406a1.088,1.088,0,0,1,1.562-1.514l6.517,6.724h0c1.313,1.354,2.346.752,2.846.273a2.376,2.376,0,0,0,.254-3.312l-12.94-13.567a1.088,1.088,0,1,1,1.574-1.5l11.616,12.18,2.836-2.831c5.392-5.384,2.422-12.544-1.76-17.04a20.351,20.351,0,0,0-4.831-3.884c-1.511-.848-8.629-3.283-13.319,1.281l-10.04,9.991c-.459.458-.3.613-.112.808.967.976,4.241,1.453,6.179-.456l2.532-2.494c2.2-2,4.653-1.252,6.823-.6,2.482.749,4.828,1.459,7.564-.7a1.088,1.088,0,1,1,1.348,1.707c-3.627,2.863-6.906,1.873-9.54,1.077-2.2-.666-3.508-.99-4.7.094l-2.5,2.464c-2.845,2.8-7.5,2.207-9.252.437a2.576,2.576,0,0,1,.124-3.88l6.622-6.59-1.482-1.474c-5.372-5.229-12.461-2.91-16.771,1.464-4.158,4.216-6.294,11.09-1.159,16.216l3.343,3.339a1.087,1.087,0,1,1-1.536,1.539l-3.345-3.339c-6.185-6.176-3.741-14.325,1.148-19.285,5.2-5.274,13.687-7.477,19.847-1.485l1.5,1.49,1.885-1.875c5.2-5.06,12.964-3.28,15.91-1.629a22.543,22.543,0,0,1,5.36,4.3c5.224,5.616,7.776,14,1.7,20.06l-2.876,2.87a4.578,4.578,0,0,1-.494,6.19,4.036,4.036,0,0,1-2.978,1.157,4.266,4.266,0,0,1-1.331,3.151,4.833,4.833,0,0,1-4.124,1.345,4.162,4.162,0,0,1-1.3,2.8,4.806,4.806,0,0,1-3.282,1.357Z"
+                  fill="#fff"></path>
+                <g id="Groupe_8347" data-name="Groupe 8347" transform="translate(160.658 377.126)">
+                  <path id="Tracé_757" data-name="Tracé 757"
+                    d="M179.1,396.9a4.156,4.156,0,0,1-2.96-1.219l-.355-.354a4.185,4.185,0,0,1-1.222-3.074,4.177,4.177,0,0,1-3.6-1.174l-.357-.355a4.175,4.175,0,0,1-1.222-3.047,4.251,4.251,0,0,1-3.73-1.15l-.355-.354a4.185,4.185,0,0,1-1.212-3.292,4.181,4.181,0,0,1-3.454-1.193l-.357-.357a4.19,4.19,0,0,1,0-5.916l4.609-4.609a4.148,4.148,0,0,1,2.958-1.222h0A4.162,4.162,0,0,1,170.8,370.8l.357.355a4.134,4.134,0,0,1,1.133,2.1l.347-.347a4.293,4.293,0,0,1,5.918,0l.357.358a4.2,4.2,0,0,1,.47,5.354,4.131,4.131,0,0,1,2.174,1.148l.357.357a4.193,4.193,0,0,1,.672,5.034,4.136,4.136,0,0,1,2.206,1.154l.357.355a4.19,4.19,0,0,1,0,5.916l-3.091,3.091A4.149,4.149,0,0,1,179.1,396.9Zm2.733-9.627a1.989,1.989,0,0,0-1.419.583l-3.091,3.091a2.011,2.011,0,0,0,0,2.84l.355.354a2.071,2.071,0,0,0,2.84,0l3.091-3.091a2.01,2.01,0,0,0,0-2.839l-.357-.357a1.993,1.993,0,0,0-1.42-.583Zm-3.234-6.545a1.993,1.993,0,0,0-1.42.583l-5.032,5.034a2.007,2.007,0,0,0,0,2.839l.355.357a2.008,2.008,0,0,0,2.839,0l5.034-5.032a2.012,2.012,0,0,0,0-2.84l-.357-.357a1.986,1.986,0,0,0-1.42-.584Zm-3-6.86a1.988,1.988,0,0,0-1.42.585l-7.341,7.341a2.017,2.017,0,0,0,0,2.84l.355.353a2.069,2.069,0,0,0,2.839,0l7.341-7.341a2.021,2.021,0,0,0,0-2.839l-.357-.358a1.992,1.992,0,0,0-1.418-.582Zm-7.753-2.109a1.993,1.993,0,0,0-1.42.583l-4.608,4.611a2.01,2.01,0,0,0,0,2.839l.357.356a2.031,2.031,0,0,0,2.839,0l4.608-4.609a2.023,2.023,0,0,0,0-2.842l-.355-.354a2,2,0,0,0-1.42-.585Z"
+                    transform="translate(-159.05 -369.583)" fill="#fff"></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+
+        <div class="relative flex flex-col justify-center pl-3">
+          <div class="absolute left-3 top-8 w-[6px] h-8 bg-[#2AD07F]"></div>
+          <p class="text-white font-bold text-lg leading-tight">
+            Simple, rapide et efficace
+          </p>
+          <p class="text-white text-xs font-normal mt-2 leading-4 ml-3">
+            Accessible à tous, votre rapport détaillé<br>
+            disponible instantanément
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  </div>
+
+  <!--Section 2 -->
+
+  <div class="bg-gray-100 mb-6">
+    <div class="py-8 px-4 text-center">
+
+      <h1 class="relative z-10 text-blueAccent font-bold text-2xl sm:text-3xl text-center mb-10 font-sans">
+        LES PRINCIPAUX AVANTAGES
+        <span class="relative inline-block font-sans">
+          DE
+          <span class="absolute -top-1 -left-2 w-20 h-20 bg-green-500 rounded-full -z-10"></span>
+        </span>
+        <br>
+        <span class="relative inline-block">
+          RÉALISER UN <br>
+          DIAGNOSTIC LOGEMENT AUTONOMIE ?
+        </span>
+      </h1>
+
+
+      <p class="text-sm sm:text-base md:text-lg leading-relaxed md:text-1xl">
+        Réaliser un Diagnostic Logement Autonomie offre plusieurs avantages permettant d’assurer l’autonomie, le <br>
+        confort, la sécurité, la qualité de vie des + fragiles
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:ml-16 md:mr-16 mt-6 mb-6 ml-5 mr-5">
+
+
+      <div class="bg-white p-4 rounded-lg">
+        <div class="flex gap-4 items-start">
+          <img src="./images/balise.png" alt="coupe" class="w-6 h-6 object-cover shrink-0 rounded mr-3">
+          <h2 class="text-blueAccent font-bold text-base sm:text-lg leading-tight">
+            Un état des lieux précis du logement
+          </h2>
+        </div>
+        <p class="text-gray-700 text-sm text-justify mt-2">
+          Le principal objectif d’un Diagnostic Logement Autonomie est de dresser
+          <strong class="font-bold">un état des lieux précis de votre logement</strong> afin de pouvoir déterminer son
+          niveau
+          <strong class="font-bold">d’accessibilité</strong>, de <strong class="font-bold">confort</strong> et de
+          <strong class="font-bold">sécurité</strong> au regard des problématiques que vous rencontrez aujourd’hui ou
+          que vous rencontrerez demain.
+        </p>
+      </div>
+
+      <div class="bg-white p-4 rounded-lg">
+        <div class="flex gap-6 items-start">
+          <img src="./images/balise.png" alt="coupe" class="w-6 h-6 object-cover shrink-0 rounded">
+          <h2 class="text-blueAccent font-bold text-base sm:text-lg leading-tight">
+            Une proposition de travaux à réaliser
+          </h2>
+        </div>
+        <p class="text-gray-700 text-sm mt-2 text-justify">
+          Une fois le Diagnostic Logement Autonomie réalisé,
+          <strong class="font-bold">un rapport détaillé vous présente de façon exhaustive les travaux d’adaptation à
+            réaliser</strong>,
+          tant à l’intérieur qu’à l'extérieur de votre logement, dans l’objectif de vous assurer une
+          <strong class="font-bold">parfaite indépendance</strong> et donc un
+          <strong class="font-bold">maintien à domicile prolongé.</strong>
+        </p>
+      </div>
+
+      <div class="bg-white p-4 rounded-lg">
+        <div class="flex gap-4 items-start">
+          <img src="./images/balise.png" alt="coupe" class="w-6 h-6 object-cover shrink-0 rounded">
+          <h2 class="text-blueAccent font-bold text-base sm:text-lg leading-tight">
+            Des aides et subventions personnalisées
+          </h2>
+        </div>
+        <p class="text-gray-700 text-sm mt-2 text-justify">
+          Tout projet d’adaptation a un coût non négligeable. Grâce à notre service de Diagnostic Logement Autonomie en
+          ligne, recevez
+          <strong class="font-bold">une liste personnalisée des aides et subventions auxquelles vous pouvez prétendre
+            pour financer votre projet d’adaptation.</strong>
+          + de 20.000 Euros d’aides et subventions peuvent être mobilisés selon les profils.
+        </p>
+      </div>
+
+      <div class="bg-white p-4 rounded-lg">
+        <div class="flex gap-4 items-start">
+          <img src="./images/balise.png" alt="coupe" class="w-6 h-6 object-cover shrink-0 rounded">
+          <h2 class="text-blueAccent font-bold text-base sm:text-lg leading-tight">
+            Prévenir les chutes
+          </h2>
+        </div>
+        <p class="text-gray-700 text-sm mt-2 text-justify">
+          Les chutes à domicile représentent la première cause de décès accidentel chez les seniors. On dénombre chaque
+          année près de 12.000 décès en France faisant suite à une chute.
+          Réaliser un Diagnostic Logement Autonomie afin d’adapter son logement c’est prévenir et donc diminuer le
+          risque de chute.
+        </p>
+      </div>
+
+      <div class="bg-white p-4 rounded-lg">
+        <div class="flex gap-4 items-start">
+          <img src="./images/balise.png" alt="coupe" class="w-6 h-6 object-cover shrink-0 rounded">
+          <h2 class="text-blueAccent font-bold text-base sm:text-lg leading-tight">
+            Améliorer le bien-être physique et mental
+          </h2>
+        </div>
+        <p class="text-gray-700 text-sm mt-2 text-justify">
+          Un logement non adapté est source de peur, de besoin d’assistance, et donc de mal-être chez la personne âgée.
+          Réaliser un Diagnostic Logement Autonomie et adapter son logement permet d’offrir à la personne âgée un
+          environnement sécurisé, sécurisant et donc rassurant.
+        </p>
+      </div>
+
+      <div class="bg-white p-4 rounded-lg">
+        <div class="flex gap-4 items-start">
+          <img src="./images/balise.png" alt="coupe" class="w-6 h-6 object-cover shrink-0 rounded">
+          <h2 class="text-blueAccent font-bold text-base sm:text-lg leading-tight">
+            Prévenir les hospitalisations
+          </h2>
+        </div>
+        <p class="text-gray-700 text-sm mt-2 text-justify">
+          Ce sont pas moins de 150.000 hospitalisations de personnes âgées chaque année liées à une chute à domicile.
+          Réaliser un Diagnostic Logement Autonomie et adapter par la suite son logement grâce aux préconisations
+          apportées c’est réduire le risque d’une hospitalisation et d’une perte d’indépendance.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="px-4">
+      <button
+        class="bg-primary text-white px-4 py-3 rounded hover:bg-secondary flex items-center mx-auto w-fit mt-6 mb-6 text-sm sm:text-base">
+        Réalisez votre autodiagnostic autonomie ➜
+      </button>
+    </div>
+
+    <!--Section 3-->
+    <div class="bg-blueAccent py-8 z-10 px-6 sm:px-12 md:px-24 h-auto">
+      <h1 class="text-primary text-center text-xl sm:text-2xl font-bold mb-6">
+        A QUI S’ADRESSE LE DIAGNOSTIC LOGEMENT AUTONOMIE ?
+      </h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 items-center">
+        <div class="text-white w-full text-sm sm:text-base text-center lg:text-justify">
+          <p class="mb-4 text-justify">
+            Le Diagnostic Logement Autonomie ne s’adresse pas uniquement aux personnes âgées rencontrant déjà des
+            difficultés mais s’adresse également et surtout à toute personne souhaitant agir de façon préventive et
+            anticiper une situation évidente de perte d’autonomie dans les prochaines années. Le fait de prévenir une
+            pareille situation permet d’assurer à toute personne son indépendance, sa sécurité, son confort, et surtout
+            son maintien à domicile.
+          </p>
+          <p class="text-justify">
+            Vous l’aurez compris, réaliser un Diagnostic Logement Autonomie permet de dresser un état des lieux complet
+            et détaillé d’un logement afin de pouvoir déterminer son niveau d’accessibilité et de confort au regard des
+            difficultés rencontrées par son occupant. Une fois le Diagnostic Logement Autonomie réalisé, il vous sera
+            présenté une liste de préconisations de travaux d’adaptation qui permettront de répondre aux problématiques
+            relevées, ainsi que les aides financières auxquelles vous pouvez prétendre pour financer votre projet.
+          </p>
+          <div>
+            <button
+              class="bg-primary text-white px-4 py-3 rounded hover:bg-secondary flex justify-start w-fit mt-6 text-sm sm:text-base sm:justify-center">
+              Réalisez votre autodiagnostic autonomie ➜
+            </button>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <img src="./images/customer.png" alt="customer" class="w-40 sm:w-48 md:w-64 lg:w-80">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="bg-white py-8 z-10 px-6 sm:px-12 md:px-24 h-auto relative overflow-hidden">
+      <div class="absolute -left-16 bottom-5 w-32 h-32 bg-blueAccent rounded-full"></div>
+
+      <h1 class="relative z-10 text-blueAccent font-bold text-2xl sm:text-3xl text-center mb-10">
+        ACTUALITÉS <span class="relative inline-block">
+          SÉNIORS
+          <span class="absolute -top-3 -right-6 w-16 h-16 bg-green-500 rounded-full -z-10"></span>
+        </span>
+      </h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:gap-6 gap-4 px-2 sm:px-4 relative z-10">
+
+        <div class="bg-white p-4 flex flex-col justify-between rounded-lg shadow-md">
+          <div>
+            <img src="./images/blog1.png" alt="ballon d'eau chaude" class="w-full h-48 object-cover rounded-md mb-3">
+            <p class="text-gray-700 text-sm font-bold">
+              Attention ! Votre ballon d'eau chaude risque d'être désactivé par l'état cet hiver... Voici pourquoi.
+            </p>
+          </div>
+          <div class="flex items-center text-blueAccent text-sm space-x-2 font-semibold mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14.657" height="16.161" viewBox="0 0 14.657 16.161">
+              <g id="Groupe_18732" data-name="Groupe 18732" transform="translate(-2.25 -1.25)">
+                <path id="Tracé_779" data-name="Tracé 779"
+                  d="M7.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,7.814,4.632Z"
+                  transform="translate(-1.242)" fill="#2250a0"></path>
+                <path id="Tracé_780" data-name="Tracé 780"
+                  d="M15.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,15.814,4.632Z"
+                  transform="translate(-3.228)" fill="#2250a0"></path>
+                <path id="Tracé_781" data-name="Tracé 781"
+                  d="M8.252,14a.748.748,0,0,1-.286-.06.721.721,0,0,1-.466-.692.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.768.768,0,0,1,.819.158A.79.79,0,0,1,9,13.253a1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,8.252,14Z"
+                  transform="translate(-1.304 -2.795)" fill="#2250a0"></path>
+                <path id="Tracé_782" data-name="Tracé 782"
+                  d="M11.752,14a.748.748,0,0,1-.286-.06A.721.721,0,0,1,11,13.252a.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.753.753,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.184,1.184,0,0,1-.09.113A.79.79,0,0,1,11.752,14Z"
+                  transform="translate(-2.173 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_783" data-name="Tracé 783"
+                  d="M15.252,14a.748.748,0,0,1-.286-.06.776.776,0,0,1-.248-.158l-.09-.113a.569.569,0,0,1-.068-.135.478.478,0,0,1-.045-.135,1.13,1.13,0,0,1-.015-.15.79.79,0,0,1,.218-.534.776.776,0,0,1,.248-.158.751.751,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,15.252,14Z"
+                  transform="translate(-3.042 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_784" data-name="Tracé 784"
+                  d="M8.252,17.506a.748.748,0,0,1-.286-.06.868.868,0,0,1-.248-.158.79.79,0,0,1-.218-.534.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.755.755,0,1,1,.534,1.285Z"
+                  transform="translate(-1.304 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_785" data-name="Tracé 785"
+                  d="M11.752,17.506A.744.744,0,0,1,11,16.755a.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.787.787,0,0,1,1.067,0,.7.7,0,0,1,.158.248.748.748,0,0,1,.06.286.744.744,0,0,1-.752.752Z"
+                  transform="translate(-2.173 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_786" data-name="Tracé 786"
+                  d="M15.252,17.5a.79.79,0,0,1-.534-.218.7.7,0,0,1-.158-.248.708.708,0,0,1,0-.571.7.7,0,0,1,.158-.248.75.75,0,0,1,.676-.2.453.453,0,0,1,.143.045.569.569,0,0,1,.135.068,1.184,1.184,0,0,1,.113.09.752.752,0,0,1-.534,1.285Z"
+                  transform="translate(-3.042 -3.663)" fill="#2250a0"></path>
+                <path id="Tracé_787" data-name="Tracé 787"
+                  d="M16.092,9.467H3.314a.564.564,0,1,1,0-1.127H16.092a.564.564,0,0,1,0,1.127Z"
+                  transform="translate(-0.124 -1.761)" fill="#2250a0"></path>
+                <path id="Tracé_788" data-name="Tracé 788"
+                  d="M12.585,17.783H6.572A3.937,3.937,0,0,1,2.25,13.461V7.072A3.937,3.937,0,0,1,6.572,2.75h6.013a3.937,3.937,0,0,1,4.322,4.322v6.389A3.937,3.937,0,0,1,12.585,17.783ZM6.572,3.877c-2.15,0-3.195,1.045-3.195,3.195v6.389c0,2.15,1.045,3.195,3.195,3.195h6.013c2.15,0,3.195-1.045,3.195-3.195V7.072c0-2.15-1.045-3.195-3.195-3.195Z"
+                  transform="translate(0 -0.373)" fill="#2250a0"></path>
+              </g>
+            </svg>
+            <span>07/12/2023 à 11:45</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 flex flex-col justify-between rounded-lg shadow-md">
+          <div>
+            <img src="./images/blog2.png" alt="radiateur" class="w-full h-48 object-cover rounded-md mb-3">
+            <p class="text-gray-700 text-sm font-bold">
+              Chauffage: évitez à tout prix ce type de radiateur qui consomme énormément
+            </p>
+          </div>
+          <div class="flex items-center text-blueAccent text-sm space-x-2 font-semibold mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14.657" height="16.161" viewBox="0 0 14.657 16.161">
+              <g id="Groupe_18732" data-name="Groupe 18732" transform="translate(-2.25 -1.25)">
+                <path id="Tracé_779" data-name="Tracé 779"
+                  d="M7.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,7.814,4.632Z"
+                  transform="translate(-1.242)" fill="#2250a0"></path>
+                <path id="Tracé_780" data-name="Tracé 780"
+                  d="M15.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,15.814,4.632Z"
+                  transform="translate(-3.228)" fill="#2250a0"></path>
+                <path id="Tracé_781" data-name="Tracé 781"
+                  d="M8.252,14a.748.748,0,0,1-.286-.06.721.721,0,0,1-.466-.692.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.768.768,0,0,1,.819.158A.79.79,0,0,1,9,13.253a1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,8.252,14Z"
+                  transform="translate(-1.304 -2.795)" fill="#2250a0"></path>
+                <path id="Tracé_782" data-name="Tracé 782"
+                  d="M11.752,14a.748.748,0,0,1-.286-.06A.721.721,0,0,1,11,13.252a.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.753.753,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.184,1.184,0,0,1-.09.113A.79.79,0,0,1,11.752,14Z"
+                  transform="translate(-2.173 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_783" data-name="Tracé 783"
+                  d="M15.252,14a.748.748,0,0,1-.286-.06.776.776,0,0,1-.248-.158l-.09-.113a.569.569,0,0,1-.068-.135.478.478,0,0,1-.045-.135,1.13,1.13,0,0,1-.015-.15.79.79,0,0,1,.218-.534.776.776,0,0,1,.248-.158.751.751,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,15.252,14Z"
+                  transform="translate(-3.042 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_784" data-name="Tracé 784"
+                  d="M8.252,17.506a.748.748,0,0,1-.286-.06.868.868,0,0,1-.248-.158.79.79,0,0,1-.218-.534.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.755.755,0,1,1,.534,1.285Z"
+                  transform="translate(-1.304 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_785" data-name="Tracé 785"
+                  d="M11.752,17.506A.744.744,0,0,1,11,16.755a.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.787.787,0,0,1,1.067,0,.7.7,0,0,1,.158.248.748.748,0,0,1,.06.286.744.744,0,0,1-.752.752Z"
+                  transform="translate(-2.173 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_786" data-name="Tracé 786"
+                  d="M15.252,17.5a.79.79,0,0,1-.534-.218.7.7,0,0,1-.158-.248.708.708,0,0,1,0-.571.7.7,0,0,1,.158-.248.75.75,0,0,1,.676-.2.453.453,0,0,1,.143.045.569.569,0,0,1,.135.068,1.184,1.184,0,0,1,.113.09.752.752,0,0,1-.534,1.285Z"
+                  transform="translate(-3.042 -3.663)" fill="#2250a0"></path>
+                <path id="Tracé_787" data-name="Tracé 787"
+                  d="M16.092,9.467H3.314a.564.564,0,1,1,0-1.127H16.092a.564.564,0,0,1,0,1.127Z"
+                  transform="translate(-0.124 -1.761)" fill="#2250a0"></path>
+                <path id="Tracé_788" data-name="Tracé 788"
+                  d="M12.585,17.783H6.572A3.937,3.937,0,0,1,2.25,13.461V7.072A3.937,3.937,0,0,1,6.572,2.75h6.013a3.937,3.937,0,0,1,4.322,4.322v6.389A3.937,3.937,0,0,1,12.585,17.783ZM6.572,3.877c-2.15,0-3.195,1.045-3.195,3.195v6.389c0,2.15,1.045,3.195,3.195,3.195h6.013c2.15,0,3.195-1.045,3.195-3.195V7.072c0-2.15-1.045-3.195-3.195-3.195Z"
+                  transform="translate(0 -0.373)" fill="#2250a0"></path>
+              </g>
+            </svg>
+            <span>07/12/2023 à 11:45</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 flex flex-col justify-between rounded-lg shadow-md">
+          <div>
+            <img src="./images/blog3.png" alt="lavage vêtements" class="w-full h-48 object-cover rounded-md mb-3">
+            <p class="text-gray-700 text-sm font-bold">
+              Ne gaspillez plus de l'argent en lavant vos vêtements... Voici l'heure idéale !
+            </p>
+          </div>
+          <div class="flex items-center text-blueAccent text-sm space-x-2 font-semibold mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14.657" height="16.161" viewBox="0 0 14.657 16.161">
+              <g id="Groupe_18732" data-name="Groupe 18732" transform="translate(-2.25 -1.25)">
+                <path id="Tracé_779" data-name="Tracé 779"
+                  d="M7.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,7.814,4.632Z"
+                  transform="translate(-1.242)" fill="#2250a0"></path>
+                <path id="Tracé_780" data-name="Tracé 780"
+                  d="M15.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,15.814,4.632Z"
+                  transform="translate(-3.228)" fill="#2250a0"></path>
+                <path id="Tracé_781" data-name="Tracé 781"
+                  d="M8.252,14a.748.748,0,0,1-.286-.06.721.721,0,0,1-.466-.692.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.768.768,0,0,1,.819.158A.79.79,0,0,1,9,13.253a1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,8.252,14Z"
+                  transform="translate(-1.304 -2.795)" fill="#2250a0"></path>
+                <path id="Tracé_782" data-name="Tracé 782"
+                  d="M11.752,14a.748.748,0,0,1-.286-.06A.721.721,0,0,1,11,13.252a.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.753.753,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.184,1.184,0,0,1-.09.113A.79.79,0,0,1,11.752,14Z"
+                  transform="translate(-2.173 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_783" data-name="Tracé 783"
+                  d="M15.252,14a.748.748,0,0,1-.286-.06.776.776,0,0,1-.248-.158l-.09-.113a.569.569,0,0,1-.068-.135.478.478,0,0,1-.045-.135,1.13,1.13,0,0,1-.015-.15.79.79,0,0,1,.218-.534.776.776,0,0,1,.248-.158.751.751,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,15.252,14Z"
+                  transform="translate(-3.042 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_784" data-name="Tracé 784"
+                  d="M8.252,17.506a.748.748,0,0,1-.286-.06.868.868,0,0,1-.248-.158.79.79,0,0,1-.218-.534.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.755.755,0,1,1,.534,1.285Z"
+                  transform="translate(-1.304 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_785" data-name="Tracé 785"
+                  d="M11.752,17.506A.744.744,0,0,1,11,16.755a.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.787.787,0,0,1,1.067,0,.7.7,0,0,1,.158.248.748.748,0,0,1,.06.286.744.744,0,0,1-.752.752Z"
+                  transform="translate(-2.173 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_786" data-name="Tracé 786"
+                  d="M15.252,17.5a.79.79,0,0,1-.534-.218.7.7,0,0,1-.158-.248.708.708,0,0,1,0-.571.7.7,0,0,1,.158-.248.75.75,0,0,1,.676-.2.453.453,0,0,1,.143.045.569.569,0,0,1,.135.068,1.184,1.184,0,0,1,.113.09.752.752,0,0,1-.534,1.285Z"
+                  transform="translate(-3.042 -3.663)" fill="#2250a0"></path>
+                <path id="Tracé_787" data-name="Tracé 787"
+                  d="M16.092,9.467H3.314a.564.564,0,1,1,0-1.127H16.092a.564.564,0,0,1,0,1.127Z"
+                  transform="translate(-0.124 -1.761)" fill="#2250a0"></path>
+                <path id="Tracé_788" data-name="Tracé 788"
+                  d="M12.585,17.783H6.572A3.937,3.937,0,0,1,2.25,13.461V7.072A3.937,3.937,0,0,1,6.572,2.75h6.013a3.937,3.937,0,0,1,4.322,4.322v6.389A3.937,3.937,0,0,1,12.585,17.783ZM6.572,3.877c-2.15,0-3.195,1.045-3.195,3.195v6.389c0,2.15,1.045,3.195,3.195,3.195h6.013c2.15,0,3.195-1.045,3.195-3.195V7.072c0-2.15-1.045-3.195-3.195-3.195Z"
+                  transform="translate(0 -0.373)" fill="#2250a0"></path>
+              </g>
+            </svg>
+            <span>07/12/2023 à 11:45</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 flex flex-col justify-between rounded-lg shadow-md">
+          <div>
+            <img src="./images/blog4.png" alt="pellets" class="w-full h-48 object-cover rounded-md mb-3">
+            <p class="text-gray-700 text-sm font-bold">
+              Achat de pellets: découvrez les astuces pour réduire votre facture
+            </p>
+          </div>
+          <div class="flex items-center text-blueAccent text-sm space-x-2 font-semibold mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14.657" height="16.161" viewBox="0 0 14.657 16.161">
+              <g id="Groupe_18732" data-name="Groupe 18732" transform="translate(-2.25 -1.25)">
+                <path id="Tracé_779" data-name="Tracé 779"
+                  d="M7.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,7.814,4.632Z"
+                  transform="translate(-1.242)" fill="#2250a0"></path>
+                <path id="Tracé_780" data-name="Tracé 780"
+                  d="M15.814,4.632a.568.568,0,0,1-.564-.564V1.814a.564.564,0,1,1,1.127,0V4.069A.568.568,0,0,1,15.814,4.632Z"
+                  transform="translate(-3.228)" fill="#2250a0"></path>
+                <path id="Tracé_781" data-name="Tracé 781"
+                  d="M8.252,14a.748.748,0,0,1-.286-.06.721.721,0,0,1-.466-.692.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.768.768,0,0,1,.819.158A.79.79,0,0,1,9,13.253a1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,8.252,14Z"
+                  transform="translate(-1.304 -2.795)" fill="#2250a0"></path>
+                <path id="Tracé_782" data-name="Tracé 782"
+                  d="M11.752,14a.748.748,0,0,1-.286-.06A.721.721,0,0,1,11,13.252a.748.748,0,0,1,.06-.286.868.868,0,0,1,.158-.248.776.776,0,0,1,.248-.158.753.753,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.184,1.184,0,0,1-.09.113A.79.79,0,0,1,11.752,14Z"
+                  transform="translate(-2.173 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_783" data-name="Tracé 783"
+                  d="M15.252,14a.748.748,0,0,1-.286-.06.776.776,0,0,1-.248-.158l-.09-.113a.569.569,0,0,1-.068-.135.478.478,0,0,1-.045-.135,1.13,1.13,0,0,1-.015-.15.79.79,0,0,1,.218-.534.776.776,0,0,1,.248-.158.751.751,0,0,1,.819.158.79.79,0,0,1,.218.534,1.13,1.13,0,0,1-.015.15.478.478,0,0,1-.045.135.569.569,0,0,1-.068.135,1.185,1.185,0,0,1-.09.113A.79.79,0,0,1,15.252,14Z"
+                  transform="translate(-3.042 -2.794)" fill="#2250a0"></path>
+                <path id="Tracé_784" data-name="Tracé 784"
+                  d="M8.252,17.506a.748.748,0,0,1-.286-.06.868.868,0,0,1-.248-.158.79.79,0,0,1-.218-.534.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.755.755,0,1,1,.534,1.285Z"
+                  transform="translate(-1.304 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_785" data-name="Tracé 785"
+                  d="M11.752,17.506A.744.744,0,0,1,11,16.755a.748.748,0,0,1,.06-.286.7.7,0,0,1,.158-.248.787.787,0,0,1,1.067,0,.7.7,0,0,1,.158.248.748.748,0,0,1,.06.286.744.744,0,0,1-.752.752Z"
+                  transform="translate(-2.173 -3.666)" fill="#2250a0"></path>
+                <path id="Tracé_786" data-name="Tracé 786"
+                  d="M15.252,17.5a.79.79,0,0,1-.534-.218.7.7,0,0,1-.158-.248.708.708,0,0,1,0-.571.7.7,0,0,1,.158-.248.75.75,0,0,1,.676-.2.453.453,0,0,1,.143.045.569.569,0,0,1,.135.068,1.184,1.184,0,0,1,.113.09.752.752,0,0,1-.534,1.285Z"
+                  transform="translate(-3.042 -3.663)" fill="#2250a0"></path>
+                <path id="Tracé_787" data-name="Tracé 787"
+                  d="M16.092,9.467H3.314a.564.564,0,1,1,0-1.127H16.092a.564.564,0,0,1,0,1.127Z"
+                  transform="translate(-0.124 -1.761)" fill="#2250a0"></path>
+                <path id="Tracé_788" data-name="Tracé 788"
+                  d="M12.585,17.783H6.572A3.937,3.937,0,0,1,2.25,13.461V7.072A3.937,3.937,0,0,1,6.572,2.75h6.013a3.937,3.937,0,0,1,4.322,4.322v6.389A3.937,3.937,0,0,1,12.585,17.783ZM6.572,3.877c-2.15,0-3.195,1.045-3.195,3.195v6.389c0,2.15,1.045,3.195,3.195,3.195h6.013c2.15,0,3.195-1.045,3.195-3.195V7.072c0-2.15-1.045-3.195-3.195-3.195Z"
+                  transform="translate(0 -0.373)" fill="#2250a0"></path>
+              </g>
+            </svg>
+            <span>07/12/2023 à 11:45</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Section 5 -->
+    <div class="w-full bg-primary flex  items-center justify-center px-5 md:px-10 lg:px-20 xl:px-24 py-5 gap-x-10"><svg
+        xmlns="http://www.w3.org/2000/svg" width="32.686" height="52.322" viewBox="0 0 32.686 52.322"
+        class="mt-3 hidden md:block">
+        <g id="Groupe_18809" data-name="Groupe 18809" transform="translate(-304.257 -3015.678)">
+          <ellipse id="Ellipse_150" data-name="Ellipse 150" cx="9.755" cy="9.755" rx="9.755" ry="9.755"
+            transform="translate(304.257 3015.678)" fill="#fff"></ellipse>
+          <path id="Tracé_846" data-name="Tracé 846"
+            d="M29,121.265a4.607,4.607,0,1,0,4.607-4.606A4.607,4.607,0,0,0,29,121.265Z"
+            transform="translate(298.727 2942.128)" fill="#fff"></path>
+        </g>
+      </svg><button type="button"
+        class="bg-primary pl-4 md:pl-6 pr-3 h-[48px] md:pr-[18px] rounded text-white font-inter-regular transition-all duration-200 ease-linear w-fit flex items-center gap-2 text-xs md:text-base leading-none mt-4 fill-white border border-white drop-shadow-none ls:h-14 md:h-16">Réalisez
+        votre autodiagnostic autonomie<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+          viewBox="0 0 20 20">
+          <g id="Groupe_8316" data-name="Groupe 8316" transform="translate(0 -0.112)">
+            <g id="Groupe_8314" data-name="Groupe 8314" transform="translate(0.751 3.055)">
+              <path id="Tracé_727" data-name="Tracé 727"
+                d="M14.431,5.18a.742.742,0,0,1,.53.22l6.07,6.07a.754.754,0,0,1,0,1.06L14.96,18.6a.75.75,0,0,1-1.06-1.06L19.441,12,13.9,6.46a.754.754,0,0,1,0-1.06A.725.725,0,0,1,14.431,5.18Z"
+                transform="translate(-2.75 -5.18)"></path>
+              <path id="Tracé_728" data-name="Tracé 728" d="M3.5,11.25H20.33a.75.75,0,0,1,0,1.5H3.5a.75.75,0,0,1,0-1.5Z"
+                transform="translate(-2.75 -5.18)">
+              </path>
+            </g>
+            <rect id="Rectangle_2394" data-name="Rectangle 2394" width="20" height="20" transform="translate(0 0.112)"
+              fill="none"></rect>
+          </g>
+        </svg></button></a><svg xmlns="http://www.w3.org/2000/svg" width="32.687" height="52.322"
+        viewBox="0 0 32.687 52.322" class="mt-3 hidden md:block">
+        <g id="Groupe_18810" data-name="Groupe 18810" transform="translate(-668.269 -3015.678)">
+          <ellipse id="Ellipse_131" data-name="Ellipse 131" cx="9.755" cy="9.755" rx="9.755" ry="9.755"
+            transform="translate(681.446 3015.678)" fill="#fff"></ellipse>
+          <path id="Tracé_789" data-name="Tracé 789"
+            d="M38.216,121.265a4.607,4.607,0,1,1-4.607-4.606A4.607,4.607,0,0,1,38.216,121.265Z"
+            transform="translate(639.266 2942.128)" fill="#fff"></path>
+        </g>
+      </svg></div>
+
+    <!-- Section 6 -->
+    <div class="relative w-full bg-gray-600 flex items-center justify-center py-6 text-white px-4">
+      <p class="text-center text-sm sm:text-base m-0">
+        Mentions Légales | Conditions d'Utilisation | Conditions Générales de Vente | Contact<br>
+        Diagnostic-autonomie.com Copyright © 2024 - Tous droits réservés
+      </p>
+    </div>
+
+
+</body>
+
+</html>
